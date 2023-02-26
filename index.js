@@ -27,18 +27,15 @@ const getStockInfo = async () => {
     //make sure has loaded 
     page.waitForFileChooser(3000);
 
-    // find the second top gaining stock 
-    const info = await page.$$eval('.MarketTop-topTable tbody tr:nth-child(2)', el => el.innerHTML);
 
-    // get the name and percent info 
-    const name = info?.querySelector(".MarketTop-name").innerText;
-    const percent = info?.querySelector(".MarketTop-quoteGain MarketTop-quoteChange").innerText;
-    //console.log({name, percent})
-    // const name = "dollar tree"
-    // const percentage = "90"
+    // find the second top gaining stock 
+    const name = await page.$$eval('.MarketTop-topTable tbody tr', el => el[1].querySelector('.MarketTop-name')?.innerText);
+    let percentage= await page.$$eval('.MarketTop-topTable tbody tr', el => el[1].querySelector('.MarketTop-quoteGain')?.innerText);
+    percentage = percentage.replace('%','');
+    console.log({name, percentage})
     const time = Date.now().toString();
 
-    // open the new page 
+    // // open the new page 
     const page2 = await browser.newPage();
     await page2.goto("https://forms.zohopublic.in/developers/form/TestResponses/formperma/-gq-UT1RjqASnGgBsW-M8MmPm8e3YLhcyFam06v2piE")
     // fill out form 
@@ -46,8 +43,6 @@ const getStockInfo = async () => {
     await page2.type('input[name = SingleLine1]', percentage);
     await page2.type('input[name = SingleLine2]', time);
 
-    // submit 
-    await page2.click('button[name = submit');
 
     //close the browser
     //await browser.close();
