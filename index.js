@@ -21,7 +21,6 @@ const getStockInfo = async () => {
     if (nasdaq){
         await nasdaq.click();
         await page.waitForSelector('.MarketTop-name');
-        await page.waitFor(3000);
     }else{
         throw new Error("link not found");
     }
