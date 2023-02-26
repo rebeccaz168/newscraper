@@ -20,12 +20,11 @@ const getStockInfo = async () => {
     // found nasdaq tab 
     if (nasdaq){
         await nasdaq.click();
+        await page.waitForSelector('.MarketTop-name');
     }else{
         throw new Error("link not found");
     }
 
-    //make sure has loaded 
-    page.waitForFileChooser(3000);
 
 
     // find the second top gaining stock 
@@ -43,9 +42,6 @@ const getStockInfo = async () => {
     await page2.type('input[name = SingleLine1]', percentage);
     await page2.type('input[name = SingleLine2]', time);
 
-
-    //close the browser
-    //await browser.close();
 };
 
 // scrape 
