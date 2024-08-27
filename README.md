@@ -1,4 +1,4 @@
-# luminai
+#news scraper
 
 # Setup and Requirements 
 - Node.JS
