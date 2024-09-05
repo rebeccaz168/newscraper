@@ -1,5 +1,8 @@
 #news scraper
 
+#Overview: 
+Use Puppeteer and Javascript to scrape stock information from cnbc and input the information in to a public web form. 
+
 # Setup and Requirements 
 - Node.JS
 - NPM 
